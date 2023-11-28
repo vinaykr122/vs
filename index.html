@@ -1,62 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulls and Cows Game</title>
+    <script>
+        // Your JavaScript code here
+        const wordList = ["bacy"];
+        let exclude = [];
+
+        const chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
+
+        let antiRepeat = [];
+        let isRepeated = false;
+        let limit = 0;
+
+        function playGame() {
+            while (true) {
+                exclude = [];
+                antiRepeat = [];
+                isRepeated = false;
+
+                const userWord = prompt("Enter 4 Letter Word: ");
+
+                if (userWord.length !== 4 || !/^[a-zA-Z]+$/.test(userWord)) {
+                    alert("Enter a valid 4-letter word with alphabetical characters only.");
+                    continue;
+                }
+
+                for (const cur of userWord) {
+                    if (antiRepeat.includes(cur)) {
+                        isRepeated = true;
+                    }
+                    antiRepeat.push(cur);
+                }
+
+                if (isRepeated) {
+                    alert("Cannot use words with repeated characters");
+                    continue;
+                }
+
+                let refIndex = 0;
+                let bull = 0;
+                let cow = 0;
+
+                for (const cur of userWord) {
+                    if (cur === chosenWord[refIndex] && !exclude.includes(cur)) {
+                        bull += 1;
+                    } else if (chosenWord.includes(cur) && !exclude.includes(cur)) {
+                        cow += 1;
+                    }
+
+                    exclude.push(cur);
+                    refIndex += 1;
+                }
+
+                alert(`${bull} bull and ${cow} cow`);
+
+                if (bull === 4) {
+                    alert("You Won The Match");
+                    break;
+                }
+
+                refIndex = 0;
+                limit += 1;
+
+                if (limit > 9) {
+                    alert("You Have Exceeded The Limit.....");
+                    break;
+                }
+            }
+        }
+    </script>
 </head>
 <body>
-  <div class="text"
-  <p> Dear Varshu ❤️ , 
-    <br>
-    <br>
-
-As I sit down to write this email, my heart is pounding with excitement and nerves. But I know in my heart that what I'm about to ask you is something I've wanted for a long time.
-    <br>
-    <br>
-    
-    
-    
-
-Varshuu, I want to spend the rest of my life with you. I want to wake up every morning to your beautiful smile, go on adventures with you, laugh with you, and hold your hand through the good times and the bad.
-    <br>
-    <br>
-
-I know we've talked about our future together before, but I wanted to take this moment to formally ask for your hand in marriage. I can't imagine spending my life with anyone else, and I truly believe that we were meant to be together.
-    <br>
-    <br>
-
-I promise to love you unconditionally, to support you in everything you do, and to always be there for you. I promise to be your partner, your best friend, and your soulmate.
-    <br>
-    <br>
-
-So, Varshuu, will you marry me?
-    <br>
-    <br>
-
-I can't wait to spend the rest of my life making you happy and building a beautiful future together.
-    <br>
-    <br>
-
-With all my love,
-Mr Vinay❤️</p>
-  </div>
-
-<div class="bg_heart">
-</div>
-
-<div class="container">
- 
-
-<h2 id="text1"></h2>
-
-
-  </div>
-  
-
-
-
+    <h1>Bulls and Cows Game</h1>
+    <button onclick="playGame()">Start Game</button>
 </body>
 </html>
