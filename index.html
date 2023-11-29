@@ -58,7 +58,7 @@
                 alert(`${bull} bull and ${cow} cow`);
 
                 if (bull === 4) {
-                    alert("You Won The Match");
+                    alert(`You Won The Match! The chosen word was: ${chosenWord}`);
                     break;
                 }
 
@@ -66,8 +66,8 @@
                 limit += 1;
 
                 if (limit > 9) {
-                    alert("You Have Exceeded The Limit.....");
-                    print(chosenWord)
+                    alert(`You Have Exceeded The Limit..... The chosen word was: ${chosenWord}`);
+                
                     break;
                 }
             }
